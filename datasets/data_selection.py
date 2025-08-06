@@ -7,7 +7,7 @@ from datasets.movingmnist import MovingMNIST
 from datasets.taxibj import Taxibj
 
 DATASETS = {
-    "greenearthnet": GreenEarthNet,
+    # "greenearthnet": GreenEarthNet,
     "moving_mnist": MovingMNIST,
     "kth": KTH,
     "kth_action":KTH_action,
@@ -18,12 +18,12 @@ DATASETS = {
 }
 
 
-METRIC_CHECKPOINT_INFO = {
-    "greenearthnet": {
-        "monitor": "RMSE_Veg",
-        "filename": "{epoch:02d}-{RMSE_Veg:.4f}",
-        "mode": "min",
-    },
+# METRIC_CHECKPOINT_INFO = {
+#     "greenearthnet": {
+#         "monitor": "RMSE_Veg",
+#         "filename": "{epoch:02d}-{RMSE_Veg:.4f}",
+#         "mode": "min",
+#     },
 
     "moving_mnist": {
         "monitor": "MSE",
@@ -56,4 +56,5 @@ METRIC_CHECKPOINT_INFO = {
         "filename": "{epoch:02d}-{PSNR:.4f}",
         "mode": "max",
     },
+
 }
