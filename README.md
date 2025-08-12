@@ -24,6 +24,6 @@ Spati-temporal prediction, pivotal in diverse applications such as autonomous dr
 - tqdm: 4.62.0+
 - torchmetrics: 0.7.0+
 ## Train
-  python train_w.py /GAttenRNN/configs/taxibj/AttenRNN/AttenRNN11M/seed=42.yaml
+    python train_w.py /GAttenRNN/configs/taxibj/AttenRNN/AttenRNN11M/seed=42.yaml
 ## Test
-  python test_w.py path/to/setting.yaml
+    python test_w.py path/to/setting.yaml
