@@ -1,0 +1,82 @@
+Architecture: "DynamicNet_multi"
+
+Seed: 42
+
+Setting: greenearthnet
+
+Logger:
+    save_dir: "experiments/"
+
+ckpt_path: None
+
+Checkpointer:
+    save_top_k: 1
+    save_last: True
+    every_n_epochs: 1
+
+Trainer:
+    strategy: 'ddp'
+    accelerator: 'gpu'
+    log_every_n_steps: 64
+    devices: [0, 1] # 改动
+    max_epochs: 200
+    gradient_clip_val: 1
+
+Data:
+    test_track: "ood-t_chopped"
+    train_batch_size: 16
+    val_batch_size: 16
+    test_batch_size: 16
+    num_workers: 4
+    dl_cloudmask: True
+    allow_fastaccess: False
+
+
+Task:
+    loss:
+        name: "MaskedL2NDVILoss"
+        lc_min: 10
+        lc_max: 40
+        ndvi_pred_idx: 0
+        ndvi_targ_idx: 0
+        pred_mask_value: -1
+        scale_by_std: False
+
+    context_length: 10
+    target_length: 20
+    n_stochastic_preds: 1
+    optimization:
+        optimizer:
+            -
+                name: AdamW
+                args:
+                    betas: [0.9, 0.999]
+                lr_per_sample: 0.00000125
+        lr_shedule:
+            -
+                name: MultiStepLR
+                args:
+                    milestones: [190] #[2, 20, 50, 90]
+                    gamma: 0.1
+    n_log_batches: 2
+
+Model:
+    patch_size: 8
+    n_image: 8
+    n_weather: 24
+    n_hidden: 256
+    context_length: 10
+    target_length: 20
+    input_size: 128
+    n_out: 1
+    n_heads: 8
+    depth: 3
+    mlp_ratio: 4
+    mtm: True
+    leave_n_first: 3
+    p_mtm: 0.7
+    p_use_mtm: 0.5
+    re_act: 'leakyrelu'
+    add_last_ndvi: True
+
+

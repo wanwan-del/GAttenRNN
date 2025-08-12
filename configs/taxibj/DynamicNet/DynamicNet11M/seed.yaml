@@ -1,0 +1,76 @@
+Architecture: "DynamicNet_single"
+
+Seed: 27
+
+Setting: taxibj
+
+Logger:
+    save_dir: "experiments/"
+
+ckpt_path: None
+
+Checkpointer:
+    save_top_k: 1
+    save_last: True
+    every_n_epochs: 1
+
+Trainer:
+#    strategy: 'ddp'
+    accelerator: 'gpu'
+    log_every_n_steps: 64
+    devices: [0]  # 改动
+    max_epochs: 200
+    gradient_clip_val: 1
+
+Data:
+    val_batch_size: 16
+    test_batch_size: 16
+    train_batch_size: 16
+    num_workers: 4
+
+Task:
+    loss:
+        name: "MSE"
+#        pred_mask_value: -1
+
+    context_length: 4
+    target_length: 4
+    n_stochastic_preds: 1
+    metric: "MSE"
+    optimization:
+        optimizer:
+            - name: AdamW
+              args:
+                  betas: [ 0.9, 0.999]
+              lr_per_sample: 0.0000625
+        lr_shedule:
+            - name: MultiStepLR
+              args:
+                  milestones: [50, 100, 150] #[2, 20, 50, 90]
+                  gamma: 0.1
+    n_log_batches: 2
+
+
+Model:
+    patch_size: 4
+    n_image: 2
+    n_hidden: 256
+    context_length: 4
+    target_length: 4
+    input_size: 32
+    n_out: 2
+    n_heads: 8
+    depth: 4
+    drop: 0.1
+    attn_drop: 0.1
+    drop_path: 0.1
+    mtm: False
+    leave_n_first: 1
+    p_mtm: 0.7
+    p_use_mtm: 0.5
+
+
+
+
+
+
