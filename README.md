@@ -11,3 +11,15 @@ Spati-temporal prediction, pivotal in diverse applications such as autonomous dr
 - `utils/` spati-temporal data processing and visualization.
 - `test_w.py` testing models trained based on the PyTorch Lightning framework.
 - `train_w.py` a general framework for training models.
+## Requirements
+- python >= 3.8
+- pytorch: 1.10.0+
+- pytorch-lightning: 1.6.0+
+- numpy: 1.21.0+
+- pandas: 1.3.0+
+- einops: 0.4.0+
+- torchvision: 0.11.0+
+- matplotlib: 3.5.0+
+- scikit-image: 0.19.0+
+- tqdm: 4.62.0+
+- torchmetrics: 0.7.0+
