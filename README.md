@@ -26,4 +26,5 @@ Spati-temporal prediction, pivotal in diverse applications such as autonomous dr
 ## Train
   python train_w.py /GAttenRNN/configs/taxibj/AttenRNN/AttenRNN11M/seed=42.yaml
 ## Test
-  python test_w.py 
+  python test_w.py path/to/setting.yaml
+      python test_sample.py
