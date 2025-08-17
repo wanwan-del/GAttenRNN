@@ -1,5 +1,5 @@
 # GAttenRNN: A Novel Recurrent Neural Network with Gated Transformer for Enhanced spati-temporal Prediction
-    The current research results have been submitted to the journal The Visual Computer and are currently under review.
+    The current research results have been submitted and are currently under review.
     https://zenodo.org/badge/DOI/10.5281/zenodo.16813327.svg
 ## Introduction
 ![architecture](GAttenRNN_architecture.png)
